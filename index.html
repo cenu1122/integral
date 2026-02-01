@@ -1,65 +1,97 @@
-﻿<!DOCTYPE html>
-<html lang="sr">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prepoznavanje Glasa</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            background-color: #f5f5f5;
-        }
-        h1 {
-            font-size: 2.5rem;
-        }
-        #result {
-            font-size: 1.5rem;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCA 2017 – Metal Processing</title>
+  <style>
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#222}
+    header{background:#0b0b0b;color:#fff;padding:20px}
+    nav{display:flex;align-items:center;flex-wrap:wrap}
+    nav a{color:#fff;margin-right:15px;text-decoration:none;font-weight:bold}
+    .lang{margin-left:auto}
+    .lang button{margin-left:5px}
+    .hero{background:#222;color:#fff;padding:60px 20px;text-align:center}
+    .container{max-width:1100px;margin:auto;padding:20px}
+    section{background:#fff;margin-bottom:20px;padding:20px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+    h2{border-bottom:2px solid #eee;padding-bottom:10px}
+    ul{padding-left:20px}
+    img{max-width:100%;border-radius:8px;margin-top:10px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+    footer{background:#0b0b0b;color:#fff;text-align:center;padding:20px}
+    input,textarea,button{width:100%;padding:10px;margin-top:10px}
+    button{background:#111;color:#fff;border:none;cursor:pointer}
+    button:hover{background:#333}
+  </style>
+  <script>
+    function setLang(lang){document.querySelectorAll('[data-lang]').forEach(el=>{el.style.display=el.getAttribute('data-lang')===lang?'block':'none'})}
+  </script>
 </head>
-<body>
+<body onload="setLang('en')">
 
-    <div>
-        <h1>Prepoznaj Moj Glas</h1>
-        <button id="start-btn">Počni Snimanje</button>
-        <div id="result"></div>
+<header>
+  <nav>
+    <strong>MCA 2017</strong>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#machines">Machines</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+    <div class="lang">
+      <button onclick="setLang('en')">EN</button>
+      <button onclick="setLang('de')">DE</button>
+      <button onclick="setLang('bs')">BS</button>
     </div>
+  </nav>
+</header>
 
-    <script>
-        const startBtn = document.getElementById('start-btn');
-        const resultDiv = document.getElementById('result');
+<div class="hero">
+  <div data-lang="en"><h1>Precision Metal Processing</h1><p>Turning • Milling • Laser Cutting • Grinding</p></div>
+  <div data-lang="de"><h1>Präzise Metallverarbeitung</h1><p>Drehen • Fräsen • Laserschneiden • Schleifen</p></div>
+  <div data-lang="bs"><h1>Precizna obrada metala</h1><p>Tokarenje • Glodanje • Lasersko sječenje • Brušenje</p></div>
+</div>
 
-        // Proveri da li browser podržava Web Speech API
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SpeechRecognition) {
-            resultDiv.innerHTML = "Tvoj browser ne podržava prepoznavanje glasa.";
-        } else {
-            const recognition = new SpeechRecognition();
-            recognition.lang = 'sr-SR';
-            recognition.interimResults = false;
-            recognition.maxAlternatives = 1;
+<div class="container">
 
-            startBtn.addEventListener('click', () => {
-                recognition.start();
-                resultDiv.innerHTML = "Slušam...";
-            });
+<section id="about">
+  <div data-lang="en"><h2>About Us</h2><p>MCA 2017 is a professional company specialized in high‑precision metal processing for industrial clients.</p><img src="onamo.png"></div>
+  <div data-lang="de"><h2>Über uns</h2><p>MCA 2017 ist ein professionelles Unternehmen für hochpräzise Metallbearbeitung.</p><img src="onamo.png"></div>
+  <div data-lang="bs"><h2>O nama</h2><p>MCA 2017 je profesionalna firma za visoko preciznu obradu metala za industriju.</p><img src="onamo.png"></div>
+</section>
 
-            recognition.addEventListener('result', (event) => {
-                const transcript = event.results[0][0].transcript;
-                resultDiv.innerHTML = `Prepoznati tekst: <strong>${transcript}</strong>`;
-            });
+<section id="services">
+  <div data-lang="en"><h2>Services</h2><ul><li>Turning</li><li>Milling</li><li>Laser cutting</li><li>Grinding</li><li>Custom metal fabrication</li></ul><img src="usluge.png"></div>
+  <div data-lang="de"><h2>Dienstleistungen</h2><ul><li>Drehen</li><li>Fräsen</li><li>Laserschneiden</li><li>Schleifen</li><li>Sonderanfertigungen</li></ul><img src="usluge.png"></div>
+  <div data-lang="bs"><h2>Usluge</h2><ul><li>Tokarenje</li><li>Glodanje</li><li>Lasersko sječenje</li><li>Brušenje</li><li>Izrada po nacrtu</li></ul><img src="usluge.png"></div>
+</section>
 
-            recognition.addEventListener('error', (event) => {
-                resultDiv.innerHTML = "Dogodila se greška: " + event.error;
-            });
-        }
-    </script>
-    
+<section id="machines">
+  <div data-lang="en"><h2>Machine Park</h2><div class="grid"><div>CNC Lathe</div><div>CNC Milling Machine</div><div>Laser Cutting Machine</div><div>Surface Grinder</div></div></div>
+  <div data-lang="de"><h2>Maschinenpark</h2><div class="grid"><div>CNC Drehmaschine</div><div>CNC Fräsmaschine</div><div>Laserschneidanlage</div><div>Flachschleifmaschine</div></div></div>
+  <div data-lang="bs"><h2>Mašinski park</h2><div class="grid"><div>CNC strug</div><div>CNC glodalica</div><div>Laser za rezanje</div><div>Brusilica</div></div></div>
+</section>
+
+<section id="gallery">
+  <div data-lang="en"><h2>Gallery</h2><img src="galerija.png"></div>
+  <div data-lang="de"><h2>Galerie</h2><img src="galerija.png"></div>
+  <div data-lang="bs"><h2>Galerija</h2><img src="galerija.png"></div>
+</section>
+
+<section id="reviews">
+  <div data-lang="en"><h2>Reviews</h2><img src="recenzije.png"></div>
+  <div data-lang="de"><h2>Bewertungen</h2><img src="recenzije.png"></div>
+  <div data-lang="bs"><h2>Recenzije</h2><img src="recenzije.png"></div>
+</section>
+
+<section id="contact">
+  <div data-lang="en"><h2>Contact</h2><form><input placeholder="Your name"><input placeholder="Email"><textarea placeholder="Message"></textarea><button>Send</button></form></div>
+  <div data-lang="de"><h2>Kontakt</h2><form><input placeholder="Name"><input placeholder="E-Mail"><textarea placeholder="Nachricht"></textarea><button>Senden</button></form></div>
+  <div data-lang="bs"><h2>Kontakt</h2><form><input placeholder="Ime"><input placeholder="Email"><textarea placeholder="Poruka"></textarea><button>Pošalji</button></form></div>
+</section>
+
+</div>
+
+<footer>© 2026 MCA 2017 – Metal Processing</footer>
 </body>
 </html>
